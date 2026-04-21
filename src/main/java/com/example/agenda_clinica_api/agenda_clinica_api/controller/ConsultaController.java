@@ -4,6 +4,7 @@ import com.example.agenda_clinica_api.agenda_clinica_api.entity.Consulta;
 import com.example.agenda_clinica_api.agenda_clinica_api.entity.dto.DadosCadastroConsulta;
 import com.example.agenda_clinica_api.agenda_clinica_api.entity.dto.DadosDetalhamentoConsulta;
 import com.example.agenda_clinica_api.agenda_clinica_api.repository.ConsultaRepository;
+import com.example.agenda_clinica_api.agenda_clinica_api.service.AgendaDeConsulta;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,29 @@ public class ConsultaController {
     @Autowired
     ConsultaRepository consultaRepository;
 
+    @Autowired
+    private AgendaDeConsulta agendaDeConsulta;
+
+
+//    @PostMapping
+//    @Transactional
+//    public ResponseEntity agendarConsulta(@RequestBody @Valid DadosCadastroConsulta dadosCadastroConsulta, UriComponentsBuilder uriComponentsBuilder) {
+//        var consulta = new Consulta(dadosCadastroConsulta);
+//        consultaRepository.save(consulta);
+//
+//        var uri = uriComponentsBuilder.path("/consultas/{id}")
+//                .buildAndExpand(consulta.getId()).toUri();
+//
+//        return ResponseEntity.created(uri).body(new DadosDetalhamentoConsulta(consulta));
+//    }
 
     @PostMapping
     @Transactional
-    public ResponseEntity agendarConsulta(@RequestBody @Valid DadosCadastroConsulta dadosCadastroConsulta, UriComponentsBuilder uriComponentsBuilder) {
-        var consulta = new Consulta(dadosCadastroConsulta);
-        consultaRepository.save(consulta);
+    public ResponseEntity agendar(@RequestBody @Valid DadosCadastroConsulta dadosCadastroConsulta) {
+        var consulta = agendaDeConsulta.agendarConsulta(dadosCadastroConsulta);
+        return ResponseEntity.ok(consulta);
 
-        var uri = uriComponentsBuilder.path("/consultas/{id}")
-                .buildAndExpand(consulta.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoConsulta(consulta));
     }
 
 
