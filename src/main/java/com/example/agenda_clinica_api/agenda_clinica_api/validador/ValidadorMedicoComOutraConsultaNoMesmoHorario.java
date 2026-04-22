@@ -1,5 +1,6 @@
 package com.example.agenda_clinica_api.agenda_clinica_api.validador;
 
+import com.example.agenda_clinica_api.agenda_clinica_api.ValidacaoException;
 import com.example.agenda_clinica_api.agenda_clinica_api.entity.dto.DadosCadastroConsulta;
 import com.example.agenda_clinica_api.agenda_clinica_api.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorA
         );
 
         if (possuiConflitoDeHorario) {
-            throw new RuntimeException("Médico já possui outra consulta agendada nesse horário");
+            throw new ValidacaoException("Médico já possui outra consulta agendada nesse horário");
         }
 
 

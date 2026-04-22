@@ -1,7 +1,5 @@
 package com.example.agenda_clinica_api.agenda_clinica_api.entity.dto;
 
-import com.example.agenda_clinica_api.agenda_clinica_api.entity.Status;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;

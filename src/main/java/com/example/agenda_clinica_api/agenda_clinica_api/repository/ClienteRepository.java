@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
+    boolean existsByIdAndAtivoTrue(Long id);
 
 
 }

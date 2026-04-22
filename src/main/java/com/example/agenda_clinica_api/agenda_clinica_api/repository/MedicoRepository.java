@@ -4,4 +4,6 @@ import com.example.agenda_clinica_api.agenda_clinica_api.entity.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
+
+    boolean existsByIdAndAtivoTrue(Long id);
 }
